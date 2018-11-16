@@ -1,8 +1,10 @@
-var express = require('express');
-var app = express();
+var app = require('./config/express')();
+
+
 
 app.get('/produtos', function(res, res) {
-  res.send('<html><body><h1>Listagem de Produtos</h1></body></html>');
+  // res.send('<html><body><h1>Listagem de Produtos</h1></body></html>');
+  res.render('produtos/lista');
 });
 
 app.listen(3000, function(){
