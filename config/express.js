@@ -5,6 +5,9 @@
 var express = require('express');
 // Carrega o módulo Express Load
 var load = require('express-load');
+// Carrega o body-parser
+var bodyParser = require('body-parser');
+
 
 module.exports = function() {
   
@@ -12,6 +15,10 @@ module.exports = function() {
 
   app.set('view engine', 'ejs'); // Seta a view engine do EJS - Embedded Javascript
   app.set('views', './app/views'); // Seta o caminho da pasta 'views' dentro de 'app'
+
+  // use - Funções que serão aplicada ao request na ordem definida
+  app.use(bodyParser.urlencoded({extended: true})); // bodyParser.urlencoded - transforma a requisição em json
+  app.use(bodyParser.json()); // Permite o envio de dados no formato json
 
   // Carrega as rotas no Express
   load('routes', {cwd:'app'})
