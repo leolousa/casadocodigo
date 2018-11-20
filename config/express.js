@@ -7,6 +7,8 @@ var express = require('express');
 var load = require('express-load');
 // Carrega o body-parser
 var bodyParser = require('body-parser');
+// Carrega o Express Validator
+var expressValidator = require('express-validator');
 
 
 module.exports = function() {
@@ -19,6 +21,7 @@ module.exports = function() {
   // use - Funções que serão aplicada ao request na ordem definida
   app.use(bodyParser.urlencoded({extended: true})); // bodyParser.urlencoded - transforma a requisição em json
   app.use(bodyParser.json()); // Permite o envio de dados no formato json
+  app.use(expressValidator());
 
   // Carrega as rotas no Express
   load('routes', {cwd:'app'})
