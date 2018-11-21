@@ -1,10 +1,12 @@
 module.exports = function(app) {
-
-  var listaProdutos = function(res, res) {
+  var listaProdutos = function(res, res, next) {
       var connection = app.infra.connectionFactory();
       var produtosDAO = new app.infra.ProdutosDAO(connection);
 
       produtosDAO.lista(function(erros, resultados){
+        if(erros) {
+          return next(erros)
+        }
 
         // CONTENT NEGOTIATION: Responde de maneira diferente de acordo com o cliente Mobile-Android/Browser
         res.format({

@@ -1,15 +1,25 @@
 var mysql = require('mysql');
 
-var connectToMySQL = function() {
-  return mysql.createConnection({
-    host: 'localhost',
-    user: 'admin',
-    password: 'admin',
-    database: 'casadocodigo_nodejs'
-  });
+function createDBConnection() {
+  if (!process.env.NODE_ENV) {
+    return mysql.createConnection({
+      host: 'localhost',
+      user: 'admin',
+      password: 'admin',
+      database: 'casadocodigo_nodejs'
+    });
+  }
+
+  if (process.env.NODE_ENV == 'test') {
+    return mysql.createConnection({
+      host: 'localhost',
+      user: 'admin',
+      password: 'admin',
+      database: 'casadocodigo_nodejs_test'
+    });
+  }
 }
 
-// Wrapper. Só é chamada no momento que carregar o objeto. Isso evita o carregamento automático
-module.exports = function() {
-  return connectToMySQL;
+module.exports = function () {
+  return createDBConnection;
 }

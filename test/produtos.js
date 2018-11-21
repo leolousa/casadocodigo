@@ -6,18 +6,18 @@ var request = require('supertest')(express); // Biblioteca para facilitar a cons
 describe('#ProdutosController', function () {
 
   it('#Listagem json', function (done) {
-    // NUma requisição assincrona, devemos chamar a função 'done();' para
+    // Numa requisição assincrona, devemos chamar a função 'done();' para
     // avisar o MOcha que a execução da requisição acabou, para que o teste seja realizado
     request.get('/produtos')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
-      .expect(200, done());
+      .expect(200, done);
   });
 
   it('#Listagem HTML', function (done) {
     request.get('/produtos')
       .expect('Content-Type', /html/)
-      .expect(200, done());
+      .expect(200, done);
   });
 
   it('#Cadastro de novo produto com dados INVÁLIDOS', function (done) {
@@ -29,7 +29,7 @@ describe('#ProdutosController', function () {
   it('#Cadastro de novo produto com dados VÁLIDOS', function (done) {
     request.post('/produtos')
       .send({titulo:'Livro de teste', descricao:'Novo livro', preco: 49.90})
-      .expect(302, done());
+      .expect(302, done);
   });
   
 });
