@@ -4,7 +4,7 @@
   "description": "Site da casa do código",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node app",
     "test": "set \"NODE_ENV=test\"&&node node_modules/mocha/bin/mocha"
   },
   "repository": {
@@ -29,5 +29,8 @@
   "devDependencies": {
     "mocha": "^5.2.0",
     "supertest": "^3.3.0"
+  },
+  "engines": {
+    "node" : "10.13.0"
   }
 }
